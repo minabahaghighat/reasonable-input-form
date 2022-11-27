@@ -1,0 +1,26 @@
+<div class="columns mt-4">
+    <div class="column">
+        
+        <app-card
+        [expiration]="$any(f)?.expiryDate.value"
+        [name]="$any(f)?.name.value"
+        [cardNumber]="$any(f)?.cardNumber.value"></app-card>
+    </div>
+    <div class="column">
+        <form [formGroup]="cardForm" (ngSubmit)="submitForm()">
+            <app-input [type]="'text'" [placeholder]="'please enter name'" [label]="'Name'"
+                [control]="$any(cardForm).get('name')"></app-input>
+            <app-input [type]="'number'" [placeholder]="'please enter card number'" [label]="'card Number'"
+                [control]="$any(cardForm).get('cardNumber')"></app-input>
+            <div class="columns">
+                <div class="column">
+                    <app-input [type]="'date'" [label]="'Expatriation'" [control]="$any(cardForm).get('expiryDate')">
+                    </app-input>
+                </div>
+            </div>
+            <button [disabled]="cardForm.invalid" type="submit" class="button is-success is-small mt-4 mr-2">Submit</button>
+            <button [disabled]="!cardForm.dirty" type="submit" class="button is-warning is-small mt-4"
+                (click)="onResetForm()">Reset</button>
+        </form>
+    </div>
+</div>
